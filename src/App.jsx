@@ -1,14 +1,14 @@
 import React from "react";
-import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-      {/* Sticky Navbar stays at the top */}
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 selection:bg-cyan-600 selection:text-white">
+      {/* Sticky Navbar is global */}
       <Navbar />
-      
-      {/* Content starts below Navbar */}
+
+      {/* Home contains all the page sections */}
       <Home />
     </div>
   );
