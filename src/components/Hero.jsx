@@ -76,7 +76,7 @@ Kindly share availability and booking details.`
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-600 mt-6 leading-relaxed"
           >
-            We deliver high-end, professional videography and photography, transforming special occasions into timeless visual experiences defined by precision and cinematic excellence.
+           We Don’t Just Capture Moments ,We Preserve Legacy. Craft cinematic videography and refined photography that transform life’s most special occasions timeless visual experiences.
           </motion.p>
 
           {/* STATS */}

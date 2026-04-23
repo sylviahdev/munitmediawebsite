@@ -8,7 +8,7 @@ const whatsappLink = `https://wa.me/${whatsappNumber}`;
 const testimonials = [
   {
     name: "Brian K.",
-    role: "Baby shower Client",
+    role: "Baby Shower Client",
     text: "The quality was insane. Munitmedia the best.",
   },
   {
@@ -19,14 +19,13 @@ const testimonials = [
   {
     name: "David W.",
     role: "Wedding Client",
-    text: "Every moment was captured perfectly. ",
+    text: "Every moment was captured perfectly.",
   },
 ];
 
 export default function Services() {
   const [index, setIndex] = useState(0);
 
-  /* AUTO AI SLIDER */
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length);
@@ -78,10 +77,12 @@ export default function Services() {
 
   return (
     <section className="bg-black text-white relative">
+
       {/* ================= HERO ================= */}
       <div className="relative h-[85vh] flex items-center justify-center text-center overflow-hidden">
+
         <motion.video
-          initial={{ scale: 1.1 }}
+          initial={{ scale: 1.05 }}
           animate={{ scale: 1 }}
           transition={{ duration: 2 }}
           className="absolute w-full h-full object-cover opacity-40"
@@ -102,19 +103,19 @@ export default function Services() {
           className="relative z-10 px-6 max-w-4xl"
         >
           <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Capture the {" "}
+            Capture the{" "}
             <span className="bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-transparent bg-clip-text">
               Extraordinary
             </span>
           </h1>
 
-          <p className="text-gray-300 text-lg mt-5">
+          <p className="text-gray-300 text-lg mt-6">
             Premium videography & photography that tells your story.
           </p>
 
           <a
             href={whatsappLink}
-            className="mt-6 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-9 py-4 rounded-full font-semibold hover:scale-105 transition"
+            className="mt-7 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-9 py-4 rounded-full font-semibold hover:scale-105 transition"
           >
             Book on WhatsApp
           </a>
@@ -122,29 +123,33 @@ export default function Services() {
       </div>
 
       {/* ================= SERVICES ================= */}
-      <div className="max-w-6xl mx-auto px-6 py-20 space-y-16">
+      <div className="max-w-6xl mx-auto px-6 py-24 space-y-20">
+
         <div className="grid md:grid-cols-4 gap-8">
+
           {services.map((s, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 60 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.2 }}
+              transition={{ duration: 0.6, delay: i * 0.15 }}
               className="relative bg-gray-900 rounded-2xl p-8 group hover:scale-105 transition"
             >
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition blur-xl bg-yellow-500/10"></div>
+              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition blur-xl bg-yellow-500/10" />
 
               <div className="relative">
-                <div className="text-4xl mb-4">{s.icon}</div>
+                <div className="text-4xl mb-5">{s.icon}</div>
 
                 <h3 className="text-xl font-semibold text-yellow-400">
                   {s.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm mt-2">{s.desc}</p>
+                <p className="text-gray-400 text-sm mt-3">
+                  {s.desc}
+                </p>
 
-                <ul className="mt-4 text-gray-300 text-sm space-y-2">
+                <ul className="mt-5 text-gray-300 text-sm space-y-2">
                   {s.list.map((l, idx) => (
                     <li key={idx}>• {l}</li>
                   ))}
@@ -152,53 +157,56 @@ export default function Services() {
 
                 <a
                   href={whatsappLink}
-                  className="mt-6 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-7 py-3 rounded-full text-sm font-semibold hover:scale-105 transition"
+                  className="mt-7 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-7 py-3 rounded-full text-sm font-semibold hover:scale-105 transition"
                 >
                   Book Now
                 </a>
               </div>
             </motion.div>
           ))}
+
         </div>
 
         {/* ================= TESTIMONIALS ================= */}
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-10">
+
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">
             What Clients Say
           </h2>
 
           <div className="relative min-h-[180px]">
+
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
+                exit={{ opacity: 0, y: -15 }}
                 transition={{ duration: 0.6 }}
-                className="bg-gray-900 p-8 rounded-2xl relative"
+                className="bg-gray-900 p-8 rounded-2xl"
               >
-                <div className="relative">
-                  <p className="text-gray-300 italic">
-                    “{testimonials[index].text}”
-                  </p>
+                <p className="text-gray-300 italic">
+                  “{testimonials[index].text}”
+                </p>
 
-                  <div className="mt-6">
-                    <h4 className="text-yellow-400 font-semibold">
-                      {testimonials[index].name}
-                    </h4>
-                    <p className="text-gray-500 text-sm">
-                      {testimonials[index].role}
-                    </p>
-                  </div>
+                <div className="mt-6">
+                  <h4 className="text-yellow-400 font-semibold">
+                    {testimonials[index].name}
+                  </h4>
+                  <p className="text-gray-500 text-sm">
+                    {testimonials[index].role}
+                  </p>
                 </div>
               </motion.div>
             </AnimatePresence>
+
           </div>
         </div>
 
-        <div className="text-center max-w-2xl mx-auto text-gray-400">
-          Advanced cinematic production for brands, weddings, and events.
+        <div className="text-center max-w-2xl mx-auto text-gray-400 mt-16">
+          Advanced Videography and Photography for brands, weddings,funerals and any other special events.
         </div>
+
       </div>
 
       {/* ================= STICKY CTA ================= */}
@@ -210,6 +218,7 @@ export default function Services() {
           WhatsApp Us
         </a>
       </div>
+
     </section>
   );
 }
