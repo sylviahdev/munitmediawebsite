@@ -6,7 +6,7 @@ function Navbar() {
   const [active, setActive] = useState("home");
 
   const whatsappQuoteLink =
-    "https://wa.me/254713919051?text=Hi%20SONS%20Media,%20I'd%20like%20to%20get%20a%20quote%20for%20event%20coverage.";
+    "https://wa.me/254713919051?text=Hi%20M-Unit%20Media,%20I'd%20like%20to%20get%20a%20quote%20for%20video%20coverage.";
 
   // Scroll Spy
   useEffect(() => {
@@ -41,13 +41,12 @@ function Navbar() {
 
   return (
     <>
-      {/* ================= TOP STRIP ================= */}
+      {/* ================= TOP CONTACT BAR ================= */}
       <div className="bg-slate-900 text-white text-xs py-2 px-6 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
 
-          {/* LEFT: CONTACT INFO */}
+          {/* LEFT CONTACT INFO */}
           <div className="flex items-center gap-8">
-
             <span className="flex items-center gap-2">
               <Mail size={14} />
               munitmedia.ke@gmail.com
@@ -62,30 +61,29 @@ function Navbar() {
               <Phone size={14} />
               0758668360
             </span>
-
           </div>
 
-          {/* RIGHT: TAGLINE */}
+          {/* RIGHT TAGLINE */}
           <div className="text-slate-300 font-medium tracking-wide text-right">
-            Premium Videography & Photography Services in Machakos and Beyond.
+            Premium Videography & Photography Services in Ekalakala, Machakos
           </div>
-
         </div>
       </div>
 
-      {/* ================= MAIN NAV ================= */}
+      {/* ================= MAIN NAVBAR ================= */}
       <nav className="w-full sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
           {/* LOGO */}
           <div className="flex items-center gap-3">
             <img src="/logo.png" className="h-10 w-auto" alt="logo" />
+
             <div className="hidden sm:flex flex-col leading-none">
               <span className="font-black text-lg text-slate-900">
                 M-UNIT <span className="text-blue-600">MEDIA</span>
               </span>
               <span className="text-[9px] uppercase tracking-[0.3em] text-slate-500">
-                Weddings • Funerals •Dowry Payments • Events • Live
+                Weddings • Funerals • Events
               </span>
             </div>
           </div>
@@ -94,11 +92,7 @@ function Navbar() {
           <div className="hidden md:flex items-center gap-10">
 
             {["home", "services", "videos", "contact"].map((item) => (
-              <a
-                key={item}
-                href={`#${item}`}
-                className={linkClass(item)}
-              >
+              <a key={item} href={`#${item}`} className={linkClass(item)}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
 
                 {active === item && (
@@ -107,7 +101,7 @@ function Navbar() {
               </a>
             ))}
 
-            {/* WhatsApp CTA */}
+            {/* CTA */}
             <a
               href={whatsappQuoteLink}
               target="_blank"

@@ -8,13 +8,13 @@ const whatsappLink = `https://wa.me/${whatsappNumber}`;
 const testimonials = [
   {
     name: "Brian K.",
-    role: "Event Client",
-    text: "The quality was insane. I Truly premium work.",
+    role: "Baby shower Client",
+    text: "The quality was insane. Munitmedia the best.",
   },
   {
     name: "Sarah M.",
-    role: "Brand Owner",
-    text: "The photos and vide is next level.",
+    role: "Retirement Party Client",
+    text: "The photos and videos are next level.",
   },
   {
     name: "David W.",

@@ -39,57 +39,56 @@ Kindly share availability and booking details.`
     >
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[650px] h-[650px] bg-blue-100/50 rounded-full blur-[140px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-100/40 rounded-full blur-[150px]" />
+        <div className="absolute top-0 right-0 w-[650px] h-[650px] bg-blue-100/60 rounded-full blur-[140px]" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-100/50 rounded-full blur-[150px]" />
         <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] bg-yellow-100/30 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2" />
       </div>
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        {/* ================= LEFT CONTENT ================= */}
+        {/* ================= LEFT ================= */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={containerVariants}
         >
           {/* BADGE */}
-          <span className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs md:text-sm font-semibold tracking-wide shadow-lg mb-6">
-            PROFESSIONAL VIDEOGRAPHY & PHOTOGRAPHY SERVICES
+          <span className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs md:text-sm font-semibold tracking-wider shadow-lg mb-6">
+            PREMIUM VIDEOGRAPHY & PHOTOGRAPHY SERVICES
           </span>
 
-          {/* TITLE */}
+          {/* HEADLINE (PREMIUM UPGRADE) */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-gray-900"
+            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] text-gray-900"
           >
-            Cinematic videography
+            Professional  Cinematic
             <span className="block text-blue-600">
-              & photography for
+              Videography & Photography
             </span>
             <span className="block text-blue-600">
-              weddings & events.
+              for Events & Brands
             </span>
           </motion.h1>
 
           {/* DESCRIPTION */}
           <motion.p
             variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 mt-6"
+            className="text-lg md:text-xl text-gray-600 mt-6 leading-relaxed"
           >
-            We capture weddings, graduations, funerals, baby showers,
-            corporate events and all special occasions with cinematic quality.
+            We deliver high-end, professional videography and photography, transforming special occasions into timeless visual experiences defined by precision and cinematic excellence.
           </motion.p>
 
           {/* STATS */}
           <motion.p
             variants={itemVariants}
-            className="text-gray-500 flex items-center gap-2 mt-4 mb-8"
+            className="text-gray-500 flex items-center gap-2 mt-5 mb-8"
           >
             <Sparkles className="text-cyan-500" size={18} />
-            500+ Projects Completed | Trusted Across Kenya
+            500+ Projects Completed • Trusted Across Kenya
           </motion.p>
 
-          {/* ================= PACKAGE SELECTOR ================= */}
+          {/* PACKAGE */}
           <motion.div variants={itemVariants} className="mb-6">
             <p className="text-sm text-gray-500 mb-2">Select Package</p>
 
@@ -105,10 +104,8 @@ Kindly share availability and booking details.`
           </motion.div>
 
           {/* BUTTONS */}
-          <motion.div
-            variants={itemVariants}
-            className="flex flex-col sm:flex-row gap-4"
-          >
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+
             <a
               href={whatsappLink}
               target="_blank"
@@ -128,6 +125,7 @@ Kindly share availability and booking details.`
               <Phone size={20} />
               {phoneDisplay}
             </a>
+
           </motion.div>
         </motion.div>
 
@@ -138,9 +136,8 @@ Kindly share availability and booking details.`
           transition={{ duration: 0.8, delay: 0.2 }}
           className="relative flex justify-end"
         >
-          <div className="relative w-full md:w-[135%] lg:w-[145%] aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl border border-gray-100">
+          <div className="relative w-full md:w-[140%] lg:w-[150%] aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl border border-gray-100">
 
-            {/* overlay */}
             <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
 
             <iframe
