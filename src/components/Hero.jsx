@@ -9,34 +9,33 @@ function Hero() {
   const phoneValue = "0713919051";
   const whatsappNumber = "254713919051";
 
+  /* ================= FORM STATE ================= */
   const [price, setPrice] = useState("45000");
+  const [eventType, setEventType] = useState("");
+  const [eventDate, setEventDate] = useState("");
+  const [location, setLocation] = useState("");
+
+  /* ================= WHATSAPP MESSAGE ================= */
+  const whatsappMessage = `
+Hi M-Unit Media 👋
+
+I would like to book your services.
+
+📌 Event Type: ${eventType || "Not specified"}
+📅 Date: ${eventDate || "Not specified"}
+📍 Location: ${location || "Not specified"}
+💰 Package: KES ${price}
+
+Kindly share availability and booking details.
+`;
 
   const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
-    `Hi M-Unit Media 👋
-
-I would like a quote for the *KES ${price} package*.
-
-Kindly share availability and booking details.`
+    whatsappMessage
   )}`;
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 18 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
-  };
-
   return (
-    <section
-      id="home"
-      className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden bg-white"
-    >
+    <section className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden bg-white">
+
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-[650px] h-[650px] bg-blue-100/60 rounded-full blur-[140px]" />
@@ -46,108 +45,104 @@ Kindly share availability and booking details.`
 
       <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
 
-        {/* ================= LEFT ================= */}
+        {/* ================= LEFT CONTENT ================= */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
         >
+
           {/* BADGE */}
-          <span className="inline-block px-6 py-2 rounded-full bg-gradient-to-r from-slate-900 to-slate-800 text-white text-xs md:text-sm font-semibold tracking-wider shadow-lg mb-6">
+          <span className="inline-block px-6 py-2 rounded-full bg-black text-white text-xs md:text-sm font-semibold tracking-wider mb-6">
             PREMIUM VIDEOGRAPHY & PHOTOGRAPHY SERVICES
           </span>
 
-          {/* HEADLINE */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] text-gray-900"
-          >
-            Top Professional Quality
-            <span className="block text-blue-600">
-              Videography & Photography
-            </span>
-            <span className="block text-blue-600">
-              for Events & Brands
-            </span>
-          </motion.h1>
+          {/* TITLE */}
+          <h1 className="text-5xl md:text-6xl font-black leading-tight text-gray-900">
+            Top Professional  Quality Videography & Photography for Events
+& Brands          </h1>
 
           {/* DESCRIPTION */}
-          <motion.p
-            variants={itemVariants}
-            className="text-lg md:text-xl text-gray-600 mt-6 leading-relaxed"
-          >
-            We Don’t Just Capture Moments, We Preserve Legacy. Craft cinematic videography and refined photography that transform life’s most special occasions.
-          </motion.p>
+          <p className="text-gray-600 mt-4 text-lg">
+           We don’t just capture moments ,we preserve legacy. Through cinematic videography and refined photography, we transform your special occasions into timeless stories that last forever.
+          </p>
 
-          {/* STATS */}
-          <motion.p
-            variants={itemVariants}
-            className="text-gray-500 flex items-center gap-2 mt-5 mb-8"
-          >
-            <Sparkles className="text-cyan-500" size={18} />
-            500+ Projects Completed • Trusted Across Kenya
-          </motion.p>
+          {/* ================= FORM ================= */}
+          <div className="mt-6 space-y-3">
 
-          {/* PACKAGE */}
-          <motion.div variants={itemVariants} className="mb-6">
-            <p className="text-sm text-gray-500 mb-2">Select Package</p>
+            <input
+              type="text"
+              placeholder="Event Type (Wedding, Funeral, Baby Shower...)"
+              value={eventType}
+              onChange={(e) => setEventType(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+            />
+
+            <input
+              type="date"
+              value={eventDate}
+              onChange={(e) => setEventDate(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+            />
+
+            <input
+              type="text"
+              placeholder="Location (City / Venue)"
+              value={location}
+              onChange={(e) => setLocation(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg"
+            />
 
             <select
               value={price}
               onChange={(e) => setPrice(e.target.value)}
-              className="w-full bg-white border border-gray-200 px-5 py-3 rounded-xl font-semibold focus:ring-2 focus:ring-cyan-400 outline-none"
+              className="w-full p-3 border border-gray-300 rounded-lg font-semibold"
             >
               <option value="45000">KES 45,000 — Gold Package</option>
               <option value="35000">KES 35,000 — Silver Package</option>
               <option value="25000">KES 25,000 — Bronze Package</option>
             </select>
-          </motion.div>
 
-          {/* BUTTONS */}
-          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4">
+          </div>
+
+          {/* ================= BUTTONS ================= */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-6">
 
             <a
               href={whatsappLink}
               target="_blank"
-              rel="noreferrer"
-              className="relative inline-flex items-center justify-center gap-3 px-8 py-4 text-white font-bold rounded-xl overflow-hidden hover:scale-105 transition"
+              rel="noopener noreferrer"
+              className="flex-1 bg-green-500 text-white text-center py-4 rounded-xl font-bold hover:scale-105 transition"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600" />
-              <span className="relative flex items-center gap-2">
-                Get Free Quote <ArrowRight size={20} />
-              </span>
+              Send Booking on WhatsApp
             </a>
 
             <a
               href={`tel:${phoneValue}`}
-              className="inline-flex items-center justify-center gap-3 px-8 py-4 font-bold rounded-xl border border-gray-300 hover:bg-gray-50 transition"
+              className="flex items-center justify-center gap-2 px-6 py-4 border rounded-xl"
             >
-              <Phone size={20} />
+              <Phone size={18} />
               {phoneDisplay}
             </a>
 
-          </motion.div>
+          </div>
+
         </motion.div>
 
         {/* ================= RIGHT VIDEO ================= */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative flex justify-end"
+          transition={{ duration: 0.8 }}
+          className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
         >
-          <div className="relative w-full md:w-[140%] lg:w-[150%] aspect-video rounded-3xl overflow-hidden bg-black shadow-2xl border border-gray-100">
-
-            <div className="absolute inset-0 bg-black/10 z-10 pointer-events-none" />
-
-            <iframe
-              className="absolute w-full h-full"
-              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`}
-              title="Hero Video"
-              frameBorder="0"
-              allow="autoplay; encrypted-media"
-            />
-          </div>
+          <iframe
+            className="absolute w-full h-full"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&rel=0&modestbranding=1`}
+            title="Hero Video"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+          />
         </motion.div>
 
       </div>

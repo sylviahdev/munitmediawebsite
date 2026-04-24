@@ -8,6 +8,8 @@ function Navbar() {
   const whatsappQuoteLink =
     "https://wa.me/254713919051?text=Hi%20M-Unit%20Media,%20I'd%20like%20to%20get%20a%20quote%20for%20video%20coverage.";
 
+  const youtubeLink = "https://www.youtube.com/@YOUR_CHANNEL";
+
   // Scroll Spy
   useEffect(() => {
     const sections = ["home", "services", "videos", "contact"];
@@ -41,12 +43,13 @@ function Navbar() {
 
   return (
     <>
-      {/* ================= TOP CONTACT BAR ================= */}
+      {/* ================= TOP BAR ================= */}
       <div className="bg-slate-900 text-white text-xs py-2 px-6 hidden md:block">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
 
-          {/* LEFT CONTACT INFO */}
+          {/* CONTACT INFO */}
           <div className="flex items-center gap-8">
+
             <span className="flex items-center gap-2">
               <Mail size={14} />
               munitmedia.ke@gmail.com
@@ -57,16 +60,38 @@ function Navbar() {
               0713919051
             </span>
 
+            {/* YOUTUBE LINK (FIXED - NO LUCIDE ICON) */}
+            <a
+              href={youtubeLink}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 hover:text-red-400 transition"
+            >
+              {/* YouTube SVG ICON */}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="text-red-500"
+              >
+                <path d="M23.498 6.186a2.95 2.95 0 0 0-2.08-2.09C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.418.596A2.95 2.95 0 0 0 .502 6.186 30.6 30.6 0 0 0 0 12a30.6 30.6 0 0 0 .502 5.814 2.95 2.95 0 0 0 2.08 2.09C4.5 20.5 12 20.5 12 20.5s7.5 0 9.418-.596a2.95 2.95 0 0 0 2.08-2.09A30.6 30.6 0 0 0 24 12a30.6 30.6 0 0 0-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/>
+              </svg>
+
+              YouTube
+            </a>
+
           </div>
 
-          {/* RIGHT TAGLINE */}
+          {/* TAGLINE */}
           <div className="text-slate-300 font-medium tracking-wide text-right">
             Premium Videography & Photography Services in Ekalakala, Machakos
           </div>
         </div>
       </div>
 
-      {/* ================= MAIN NAVBAR ================= */}
+      {/* ================= MAIN NAV ================= */}
       <nav className="w-full sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
@@ -90,7 +115,6 @@ function Navbar() {
             {["home", "services", "videos", "contact"].map((item) => (
               <a key={item} href={`#${item}`} className={linkClass(item)}>
                 {item.charAt(0).toUpperCase() + item.slice(1)}
-
                 {active === item && (
                   <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-blue-600 rounded-full"></span>
                 )}

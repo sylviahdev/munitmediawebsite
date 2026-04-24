@@ -22,7 +22,7 @@ function Footer() {
             <div className="space-y-4">
               <div className="flex items-center gap-4 text-gray-300">
                 <MapPin className="text-[#0066FF]" size={20} />
-                <span>Ekalakala, MachakosS</span>
+                <span>Ekalakala, Machakos</span>
               </div>
               <div className="flex items-center gap-4 text-gray-300">
                 <Phone className="text-[#0066FF]" size={20} />
