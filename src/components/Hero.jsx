@@ -35,7 +35,7 @@ Kindly share availability and booking details.`
   return (
     <section
       id="home"
-      className="relative w-full max-w-7xl mx-auto px-6 pt-28 pb-24 overflow-hidden bg-white"
+      className="relative w-full max-w-7xl mx-auto px-6 pt-20 pb-12 overflow-hidden bg-white"
     >
       {/* ================= BACKGROUND ================= */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
@@ -57,12 +57,12 @@ Kindly share availability and booking details.`
             PREMIUM VIDEOGRAPHY & PHOTOGRAPHY SERVICES
           </span>
 
-          {/* HEADLINE (PREMIUM UPGRADE) */}
+          {/* HEADLINE */}
           <motion.h1
             variants={itemVariants}
             className="text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] text-gray-900"
           >
-            Professional  Cinematic
+            Top Professional Quality
             <span className="block text-blue-600">
               Videography & Photography
             </span>
@@ -76,7 +76,7 @@ Kindly share availability and booking details.`
             variants={itemVariants}
             className="text-lg md:text-xl text-gray-600 mt-6 leading-relaxed"
           >
-           We Don’t Just Capture Moments ,We Preserve Legacy. Craft cinematic videography and refined photography that transform life’s most special occasions timeless visual experiences.
+            We Don’t Just Capture Moments, We Preserve Legacy. Craft cinematic videography and refined photography that transform life’s most special occasions.
           </motion.p>
 
           {/* STATS */}

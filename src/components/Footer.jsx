@@ -1,5 +1,5 @@
 import React from "react";
-import { MapPin, Mail, Phone, Instagram, Facebook } from "lucide-react";
+import { MapPin, Mail, Phone } from "lucide-react";
 
 function Footer() {
   const currentYear = new Date().getFullYear();
@@ -15,13 +15,14 @@ function Footer() {
               M-UNIT MEDIA
             </h3>
             <p className="text-gray-400 text-lg mb-8 max-w-sm">
-              Capturing Kenya’s most iconic moments with unmatched expertise and professional cinematic quality.
+              Capturing Kenya’s most iconic moments with unmatched expertise and professional quality videos and photos 
+              
             </p>
             
             <div className="space-y-4">
               <div className="flex items-center gap-4 text-gray-300">
                 <MapPin className="text-[#0066FF]" size={20} />
-                <span>Nairobi, Kenya</span>
+                <span>Ekalakala, MachakosS</span>
               </div>
               <div className="flex items-center gap-4 text-gray-300">
                 <Phone className="text-[#0066FF]" size={20} />
@@ -29,17 +30,17 @@ function Footer() {
               </div>
               <div className="flex items-center gap-4 text-gray-300">
                 <Mail className="text-[#0066FF]" size={20} />
-                <span>info@munitmedia.co.ke</span>
+                <span>munitmedia.ke@gmail.com</span>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="flex gap-4 mt-8">
-              <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-[#0066FF] transition-colors">
-                <Instagram size={20} />
+              <a href="https://instagram.com/m-unitmedia7055" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0066FF] transition-colors font-semibold">
+                Instagram
               </a>
-              <a href="#" className="p-3 bg-gray-800 rounded-full hover:bg-[#0066FF] transition-colors">
-                <Facebook size={20} />
+              <a href="https://youtube.com/@m-unitmedia7055" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0066FF] transition-colors font-semibold">
+                YouTube
               </a>
             </div>
           </div>
@@ -50,7 +51,7 @@ function Footer() {
               {/* UX Tip: Using an iframe for a live Google Map */}
               <iframe
                 title="M-Unit Media Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127641.17164871325!2d36.7643118552399!3d-1.303164166297312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1172d84d49a7%3A0xf7cf0254b297924c!2sNairobi!5e0!3m2!1sen!2ske!4v1713361200000!5m2!1sen!2ske"
+                src="https://www.google.com/maps?q=Munit+Media+Ekalakala+Machakos,+Kenya&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -57,10 +57,6 @@ function Navbar() {
               0713919051
             </span>
 
-            <span className="flex items-center gap-2">
-              <Phone size={14} />
-              0758668360
-            </span>
           </div>
 
           {/* RIGHT TAGLINE */}

@@ -1,224 +1,217 @@
-import React, { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
 
-const whatsappNumber = "254713919051";
-const whatsappLink = `https://wa.me/${whatsappNumber}`;
+/* ================= CONFIG ================= */
+const WHATSAPP_NUMBER = "254713919051";
 
-/* ================= TESTIMONIALS ================= */
-const testimonials = [
+/* ================= SERVICES DATA ================= */
+const services = [
   {
-    name: "Brian K.",
-    role: "Baby Shower Client",
-    text: "The quality was insane. Munitmedia the best.",
+    title: "Professional Videography",
+    description:
+      "We capture events using cinematic cameras, drones, and storytelling techniques.",
+    features: [
+      "4K Ultra HD Recording",
+      "Aerial Drone Coverage",
+      "Multi-Camera Setup",
+      "Professional Event Coverage",
+    ],
+    icon: "🎥",
   },
   {
-    name: "Sarah M.",
-    role: "Retirement Party Client",
-    text: "The photos and videos are next level.",
+    title: "Professional Photography",
+    description:
+      "High-end photography capturing emotion, detail, and timeless moments.",
+    features: [
+      "Event Photography",
+      "Studio Shoots",
+      "Portrait Retouching",
+      "High-Resolution Delivery",
+    ],
+    icon: "📸",
   },
   {
-    name: "David W.",
-    role: "Wedding Client",
-    text: "Every moment was captured perfectly.",
+    title: "Post Production (Cinematic Editing)",
+    description:
+      "We transform raw footage into high-end cinematic content for all platforms.",
+    features: [
+      "YouTube Video Editing & Optimization",
+      "Social Media Posting (Instagram, TikTok, Facebook)",
+      "Professional Sound Design & Mixing",
+      "Motion Graphics & Color Grading",
+    ],
+    icon: "🎬",
+  },
+  {
+    title: "Live Streaming",
+    description:
+      "Reliable, high-quality live streaming for events anywhere in Kenya.",
+    features: [
+      "Full HD Streaming",
+      "Multi-Camera Switching",
+      "Real-Time Monitoring",
+      "Event Broadcasting",
+    ],
+    icon: "📡",
   },
 ];
 
+/* ================= COMPONENT ================= */
 export default function Services() {
-  const [index, setIndex] = useState(0);
+  const [showQuote, setShowQuote] = useState(false);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
-    }, 5000);
+  const [form, setForm] = useState({
+    name: "",
+    phone: "",
+    message: "",
+  });
 
-    return () => clearInterval(interval);
-  }, []);
+  /* ================= SUBMIT HANDLER ================= */
+  const handleSubmit = () => {
+    if (!form.name || !form.phone || !form.message) {
+      alert("Please fill all fields");
+      return;
+    }
 
-  const services = [
-    {
-      icon: "🎥",
-      title: "Videography",
-      desc: "Cinematic video production for events & brands.",
-      list: [
-        "4K Shooting",
-        "Aerial Drone Footage",
-        "Multiple Camera Coverage",
-        "Professional Event Coverage",
-      ],
-    },
-    {
-      icon: "📸",
-      title: "Photography",
-      desc: "Professional photography.",
-      list: [
-        "High-quality Studio Shoots",
-        "Event Coverage",
-        "Professional Retouching & Editing",
-      ],
-    },
-    {
-      icon: "🎬",
-      title: "Editing",
-      desc: "High-end cinematic post-production.",
-      list: ["YouTube", "Sound Design", "Social Media"],
-    },
-    {
-      icon: "📡",
-      title: "Live Streaming",
-      desc: "Real-time professional event broadcasting.",
-      list: [
-        "HD Streaming",
-        "Multi-Camera Setup",
-        "DVR Recording",
-        "Real-Time Monitoring",
-      ],
-    },
-  ];
+    const text = `Hello, my name is ${form.name}.
+Phone: ${form.phone}
+Service: ${form.message}`;
+
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      text
+    )}`;
+
+    window.open(url, "_blank");
+
+    // reset
+    setForm({ name: "", phone: "", message: "" });
+    setShowQuote(false);
+  };
 
   return (
-    <section className="bg-black text-white relative">
-
-      {/* ================= HERO ================= */}
-      <div className="relative h-[85vh] flex items-center justify-center text-center overflow-hidden">
-
-        <motion.video
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 2 }}
-          className="absolute w-full h-full object-cover opacity-40"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/your-video.mp4" type="video/mp4" />
-        </motion.video>
-
-        <div className="absolute inset-0 bg-black/70" />
-
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 px-6 max-w-4xl"
-        >
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
-            Capture the{" "}
-            <span className="bg-gradient-to-r from-yellow-300 via-yellow-500 to-yellow-600 text-transparent bg-clip-text">
-              Extraordinary
-            </span>
-          </h1>
-
-          <p className="text-gray-300 text-lg mt-6">
-            Premium videography & photography that tells your story.
-          </p>
-
-          <a
-            href={whatsappLink}
-            className="mt-7 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-9 py-4 rounded-full font-semibold hover:scale-105 transition"
-          >
-            Book on WhatsApp
-          </a>
-        </motion.div>
+    <section className="bg-black text-white py-24 px-6 relative overflow-hidden">
+      
+      {/* background glow (FIXED) */}
+      <div className="absolute inset-0 opacity-30 pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-yellow-500/20 blur-[150px]" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-blue-500/10 blur-[160px]" />
       </div>
 
-      {/* ================= SERVICES ================= */}
-      <div className="max-w-6xl mx-auto px-6 py-24 space-y-20">
+      {/* header */}
+      <div className="max-w-6xl mx-auto text-center mb-20 relative z-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold"
+        >
+          Premium Videography & Photography Services
+        </motion.h2>
 
-        <div className="grid md:grid-cols-4 gap-8">
+        <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+          We don’t just capture content — we build cinematic experiences that
+          elevate your brand, event, and memories.
+        </p>
+      </div>
 
-          {services.map((s, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.15 }}
-              className="relative bg-gray-900 rounded-2xl p-8 group hover:scale-105 transition"
+      {/* grid */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 relative z-10">
+        {services.map((service, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            whileHover={{ scale: 1.02 }}
+            className="group relative bg-[#111] border border-gray-800 rounded-2xl p-8 overflow-hidden"
+          >
+            {/* hover glow */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-r from-yellow-500/10 to-transparent blur-2xl pointer-events-none" />
+
+            <div className="text-4xl mb-4">{service.icon}</div>
+
+            <h3 className="text-2xl font-bold text-yellow-400">
+              {service.title}
+            </h3>
+
+            <p className="text-gray-400 mt-3 leading-relaxed">
+              {service.description}
+            </p>
+
+            <ul className="mt-6 space-y-2 text-gray-300 text-sm">
+              {service.features.map((f, idx) => (
+                <li key={idx} className="flex items-center gap-2">
+                  <span className="text-yellow-400">✓</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+
+            <button
+              onClick={() => setShowQuote(true)}
+              className="inline-block mt-8 bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
             >
-              <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition blur-xl bg-yellow-500/10" />
+              Get Quote
+            </button>
+          </motion.div>
+        ))}
+      </div>
 
-              <div className="relative">
-                <div className="text-4xl mb-5">{s.icon}</div>
+      {/* ================= MODAL ================= */}
+      {showQuote && (
+        <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+          <div className="bg-[#111] p-8 rounded-2xl w-full max-w-md">
+            <h3 className="text-xl font-bold mb-4 text-yellow-400">
+              Request a Quote
+            </h3>
 
-                <h3 className="text-xl font-semibold text-yellow-400">
-                  {s.title}
-                </h3>
+            <input
+              type="text"
+              placeholder="Your Name"
+              value={form.name}
+              onChange={(e) =>
+                setForm({ ...form, name: e.target.value })
+              }
+              className="w-full mb-3 p-3 bg-black border border-gray-700 rounded"
+            />
 
-                <p className="text-gray-400 text-sm mt-3">
-                  {s.desc}
-                </p>
+            <input
+              type="text"
+              placeholder="Phone Number"
+              value={form.phone}
+              onChange={(e) =>
+                setForm({ ...form, phone: e.target.value })
+              }
+              className="w-full mb-3 p-3 bg-black border border-gray-700 rounded"
+            />
 
-                <ul className="mt-5 text-gray-300 text-sm space-y-2">
-                  {s.list.map((l, idx) => (
-                    <li key={idx}>• {l}</li>
-                  ))}
-                </ul>
+            <textarea
+              placeholder="Tell us about your event..."
+              value={form.message}
+              onChange={(e) =>
+                setForm({ ...form, message: e.target.value })
+              }
+              className="w-full mb-4 p-3 bg-black border border-gray-700 rounded"
+            />
 
-                <a
-                  href={whatsappLink}
-                  className="mt-7 inline-block bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-7 py-3 rounded-full text-sm font-semibold hover:scale-105 transition"
-                >
-                  Book Now
-                </a>
-              </div>
-            </motion.div>
-          ))}
-
-        </div>
-
-        {/* ================= TESTIMONIALS ================= */}
-        <div className="max-w-3xl mx-auto text-center">
-
-          <h2 className="text-3xl md:text-4xl font-bold mb-12">
-            What Clients Say
-          </h2>
-
-          <div className="relative min-h-[180px]">
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                transition={{ duration: 0.6 }}
-                className="bg-gray-900 p-8 rounded-2xl"
+            <div className="flex justify-between items-center">
+              <button
+                onClick={() => setShowQuote(false)}
+                className="text-gray-400"
               >
-                <p className="text-gray-300 italic">
-                  “{testimonials[index].text}”
-                </p>
+                Cancel
+              </button>
 
-                <div className="mt-6">
-                  <h4 className="text-yellow-400 font-semibold">
-                    {testimonials[index].name}
-                  </h4>
-                  <p className="text-gray-500 text-sm">
-                    {testimonials[index].role}
-                  </p>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
+              <button
+                onClick={handleSubmit}
+                className="bg-yellow-500 text-black px-4 py-2 rounded hover:scale-105 transition"
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </div>
-
-        <div className="text-center max-w-2xl mx-auto text-gray-400 mt-16">
-          Advanced Videography and Photography for brands, weddings,funerals and any other special events.
-        </div>
-
-      </div>
-
-      {/* ================= STICKY CTA ================= */}
-      <div className="fixed bottom-5 right-5 z-50">
-        <a
-          href={whatsappLink}
-          className="bg-gradient-to-r from-yellow-400 to-yellow-600 text-black px-5 py-3 rounded-full shadow-lg font-semibold hover:scale-110 transition"
-        >
-          WhatsApp Us
-        </a>
-      </div>
-
+      )}
     </section>
   );
 }
