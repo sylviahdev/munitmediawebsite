@@ -111,10 +111,11 @@ Message: ${formData.message}
           <ul className="space-y-4">
             {[
               "15+ Years Industry Experience",
-              "Cinematic 4K Video Quality",
+              "Cinematic 4K/6K Video Quality",
               "Advanced Lighting & Audio Equipment",
-              "Fast Turnaround on Delivery",
-              "Certified Professionals Only"
+              "Fast delivery & professional editing",
+              "Experienced event coverage team" ,
+              "📡 Live streaming for events (Facebook, YouTube & private platforms)" ,
             ].map((text, i) => (
               <li key={i} className="flex items-start gap-4 font-bold text-slate-100">
                 <ShieldCheck className="text-amber-400 shrink-0 mt-1" size={20} />

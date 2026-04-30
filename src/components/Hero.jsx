@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
+import MpesaPaymentModal from "./MpesaPaymentModal";
 
 export default function Hero() {
   const videoId = "yX7kFvvVTng";
@@ -15,6 +16,7 @@ export default function Hero() {
   const [location, setLocation] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [selectedPackage, setSelectedPackage] = useState("Gold Package");
+  const [isMpesaModalOpen, setIsMpesaModalOpen] = useState(false);
 
   // ================= HELPERS =================
   const formatPhone = (phone) => {
@@ -69,48 +71,11 @@ I would like to book your services.
 
 📋 Includes:
 ${packages[selectedPackage].map((item) => `• ${item}`).join("\n")}
-
-Kindly share availability and booking details.
 `;
 
   const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
     whatsappMessage
   )}`;
-
-  // ================= MPESA =================
-  const handleMpesaPayment = async () => {
-    if (!clientPhone) {
-      alert("Enter your phone number first");
-      return;
-    }
-
-    try {
-      const res = await fetch("http://127.0.0.1:5000/mpesa/stkpush", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          phone: formatPhone(clientPhone),
-          amount: 1000,
-          eventType,
-          date: eventDate,
-          location,
-          package: selectedPackage,
-        }),
-      });
-
-      const data = await res.json();
-
-      if (data.ResponseCode === "0") {
-        alert("📲 Check your phone to complete payment");
-      } else {
-        alert("❌ Payment request failed");
-      }
-    } catch (err) {
-      alert("Server error");
-    }
-  };
 
   // ================= UI =================
   return (
@@ -125,64 +90,43 @@ Kindly share availability and booking details.
       <div className="grid md:grid-cols-2 gap-14 items-center">
 
         {/* LEFT */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+          
           <span className="px-5 py-2 bg-black text-white text-xs rounded-full font-semibold">
-            PREMIUM VIDEOGRAPHY & PHOTOGRAPHY SERVICES
+            PREMIUM VIDEOGRAPHY & PHOTOGRAPHY
           </span>
 
           <h1 className="text-5xl md:text-7xl font-bold mt-6 text-gray-900">
-           Top  Professional <span className="text-yellow-500">Videography</span> & Photography for Your Special Moments and Events
+            Top Professional <span className="text-yellow-500">Videography</span> & Photography Services
           </h1>
 
           <p className="text-gray-600 mt-6 text-lg max-w-xl">
-            We capture your most important moments with cinematic precision,quality and creativity.
+            We capture your moments with cinematic precision and creativity.Our team delivers high-quality photography and cinematic videography designed to make your moments unforgettable.
           </p>
 
           {/* FORM */}
           <div className="mt-8 space-y-4">
 
-            <input
-              type="text"
-              placeholder="Event Type"
-              value={eventType}
-              onChange={(e) => setEventType(e.target.value)}
-              className="input"
-            />
+            <input className="input" placeholder="Event Type"
+              value={eventType} onChange={(e) => setEventType(e.target.value)} />
 
-            <input
-              type="date"
-              value={eventDate}
-              onChange={(e) => setEventDate(e.target.value)}
-              className="input"
-            />
+            <input className="input" type="date"
+              value={eventDate} onChange={(e) => setEventDate(e.target.value)} />
 
-            <input
-              type="text"
-              placeholder="Location"
-              value={location}
-              onChange={(e) => setLocation(e.target.value)}
-              className="input"
-            />
+            <input className="input" placeholder="Location"
+              value={location} onChange={(e) => setLocation(e.target.value)} />
 
-            <input
-              type="tel"
-              placeholder="Your Phone Number"
-              value={clientPhone}
-              onChange={(e) => setClientPhone(e.target.value)}
-              className="input"
-            />
+            <input className="input" placeholder="Phone Number"
+              value={clientPhone} onChange={(e) => setClientPhone(e.target.value)} />
 
-            <select
+            <select className="input font-semibold"
               value={selectedPackage}
-              onChange={(e) => setSelectedPackage(e.target.value)}
-              className="input font-semibold"
-            >
+              onChange={(e) => setSelectedPackage(e.target.value)}>
+
               <option>Gold Package</option>
               <option>Silver Package</option>
               <option>Bronze Package</option>
+
             </select>
 
             {/* PACKAGE PREVIEW */}
@@ -203,22 +147,21 @@ Kindly share availability and booking details.
             <a
               href={whatsappLink}
               target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-green-500 text-white text-center py-4 rounded-xl font-semibold hover:scale-105 transition"
+              className="flex-1 bg-green-500 text-white text-center py-4 rounded-xl font-semibold"
             >
               Book via WhatsApp
             </a>
 
             <button
-              onClick={handleMpesaPayment}
-              className="flex-1 bg-green-600 text-white py-4 rounded-xl font-semibold hover:scale-105 transition"
+              onClick={() => setIsMpesaModalOpen(true)}
+              className="flex-1 bg-green-600 text-white py-4 rounded-xl font-semibold"
             >
               Pay with M-Pesa
             </button>
 
             <a
               href={`tel:${COMPANY_PHONE_VALUE}`}
-              className="flex items-center justify-center gap-2 px-6 py-4 border rounded-xl hover:bg-gray-100"
+              className="flex items-center justify-center gap-2 px-6 py-4 border rounded-xl"
             >
               <Phone size={18} />
               {COMPANY_PHONE_DISPLAY}
@@ -243,7 +186,7 @@ Kindly share availability and booking details.
 
       </div>
 
-      {/* REUSABLE INPUT STYLE */}
+      {/* INPUT STYLE */}
       <style jsx>{`
         .input {
           width: 100%;
@@ -257,6 +200,14 @@ Kindly share availability and booking details.
           box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
         }
       `}</style>
+
+      {/* M-PESA PAYMENT MODAL */}
+      <MpesaPaymentModal
+        isOpen={isMpesaModalOpen}
+        onClose={() => setIsMpesaModalOpen(false)}
+        packageName={selectedPackage}
+        amount={1000}
+      />
 
     </section>
   );
