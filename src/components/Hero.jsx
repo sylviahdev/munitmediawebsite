@@ -227,7 +227,7 @@ ${packages[selectedPackage].map((item) => `• ${item}`).join("\n")}
               target="_blank"
               className="block text-center mt-4 py-3 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#c9a227] text-black font-semibold hover:scale-105 transition"
             >
-              Start Booking
+              Book a shoot
             </a>
 
           </div>
