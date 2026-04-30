@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Phone } from "lucide-react";
+import { Phone, MessageCircle } from "lucide-react";
 
 export default function Hero() {
   const videoId = "yX7kFvvVTng";
@@ -9,14 +9,12 @@ export default function Hero() {
   const COMPANY_PHONE_VALUE = "0713919051";
   const WHATSAPP_NUMBER = "254713919051";
 
-  // ================= STATE =================
   const [eventType, setEventType] = useState("");
   const [eventDate, setEventDate] = useState("");
   const [location, setLocation] = useState("");
   const [clientPhone, setClientPhone] = useState("");
   const [selectedPackage, setSelectedPackage] = useState("Gold Package");
 
-  // ================= PACKAGES =================
   const packages = {
     "Bronze Package": [
       "1 Videographer",
@@ -48,7 +46,6 @@ export default function Hero() {
     ],
   };
 
-  // ================= WHATSAPP =================
   const whatsappMessage = `
 Hi M-Unit Media 👋
 
@@ -69,70 +66,143 @@ ${packages[selectedPackage].map((item) => `• ${item}`).join("\n")}
     whatsappMessage
   )}`;
 
-  // ================= UI =================
   return (
-    <section className="relative w-full max-w-[1400px] mx-auto px-6 pt-24 pb-16 bg-white overflow-hidden">
+    <section className="relative min-h-screen w-full overflow-hidden bg-black text-white">
 
-      {/* BACKGROUND */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 blur-[140px] rounded-full" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-cyan-100 blur-[150px] rounded-full" />
-      </div>
+      {/* 🎬 Background Video */}
+      <iframe
+        className="absolute inset-0 w-full h-full object-cover scale-150 opacity-60 pointer-events-none"
+        src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&modestbranding=1`}
+        title="Background Video"
+        allow="autoplay; encrypted-media"
+      />
 
-      <div className="grid md:grid-cols-2 gap-14 items-center">
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-black/80 to-black/95" />
 
-        {/* LEFT */}
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+      {/* CONTENT */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
 
-          <span className="px-5 py-2 bg-black text-white text-xs rounded-full font-semibold">
-            PREMIUM VIDEOGRAPHY & PHOTOGRAPHY
-          </span>
+        {/* LEFT SIDE */}
+        <div className="space-y-8">
 
-          <h1 className="text-5xl md:text-7xl font-bold mt-6 text-gray-900">
-            Top Professional <span className="text-yellow-500">Videography</span> & Photography Services
-          </h1>
+          {/* PREMIUM BADGE */}
+          <motion.span
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-block px-5 py-2 text-xs tracking-widest uppercase rounded-full 
+                       bg-gradient-to-r from-[#d4af37] via-[#f5e6c8] to-[#c9a227] 
+                       text-black font-semibold shadow-[0_0_25px_rgba(212,175,55,0.4)]"
+          >
+            Premium Videography Studio
+          </motion.span>
 
-          <p className="text-gray-600 mt-6 text-lg max-w-xl">
-            We capture your moments with cinematic precision and creativity.
-            Our team delivers high-quality photography and cinematic videography
-            designed to make your moments unforgettable.
-          </p>
+          {/* HEADLINE */}
+          <motion.h1
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight"
+          >
+            <span className="bg-gradient-to-r from-[#d4af37] via-[#f5e6c8] to-[#c9a227] bg-clip-text text-transparent">
+              Top Professional Videography
+            </span>
+            <br />
+            <span className="text-white/70">& Photography Services</span>
+          </motion.h1>
 
-          {/* FORM */}
-          <div className="mt-8 space-y-4">
+          {/* SUBTEXT */}
+          <motion.p
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="text-white/60 text-lg max-w-lg leading-relaxed"
+          >
+            We capture your moments with cinematic precision and refined artistry.
+            Delivering premium 4K/6K visuals that transform your story into a timeless masterpiece.
+          </motion.p>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.8 }}
+            className="flex flex-wrap gap-4"
+          >
+            {/* WhatsApp */}
+            <a
+              href={whatsappLink}
+              target="_blank"
+              className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-xl overflow-hidden"
+            >
+              <span className="absolute inset-0 bg-gradient-to-r from-[#d4af37] to-[#c9a227] opacity-90 group-hover:opacity-100 transition" />
+              <span className="absolute inset-0 blur-xl bg-[#d4af37] opacity-40 group-hover:opacity-70 transition" />
+              <MessageCircle size={18} className="relative z-10 text-black" />
+              <span className="relative z-10 font-semibold text-black">
+                Book via WhatsApp
+              </span>
+            </a>
+
+            {/* CALL */}
+            <a
+              href={`tel:${COMPANY_PHONE_VALUE}`}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 hover:bg-white/10 transition"
+            >
+              <Phone size={18} />
+              {COMPANY_PHONE_DISPLAY}
+            </a>
+          </motion.div>
+        </div>
+
+        {/* RIGHT FORM */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.9 }}
+          className="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-2xl p-8 shadow-[0_20px_80px_rgba(0,0,0,0.6)]"
+        >
+
+          <h3 className="text-xl font-semibold mb-6 text-white/80">
+            Quick Booking
+          </h3>
+
+          <div className="space-y-4">
 
             <input
-              className="input"
+              type="text"
               placeholder="Event Type"
               value={eventType}
               onChange={(e) => setEventType(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:ring-2 focus:ring-[#d4af37]/40"
             />
 
             <input
-              className="input"
               type="date"
               value={eventDate}
               onChange={(e) => setEventDate(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:ring-2 focus:ring-[#d4af37]/40"
             />
 
             <input
-              className="input"
+              type="text"
               placeholder="Location"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:ring-2 focus:ring-[#d4af37]/40"
             />
 
             <input
-              className="input"
+              type="tel"
               placeholder="Phone Number"
               value={clientPhone}
               onChange={(e) => setClientPhone(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg outline-none focus:ring-2 focus:ring-[#d4af37]/40"
             />
 
             <select
-              className="input font-semibold"
               value={selectedPackage}
               onChange={(e) => setSelectedPackage(e.target.value)}
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg outline-none font-semibold"
             >
               <option>Gold Package</option>
               <option>Silver Package</option>
@@ -140,70 +210,29 @@ ${packages[selectedPackage].map((item) => `• ${item}`).join("\n")}
             </select>
 
             {/* PACKAGE PREVIEW */}
-            <div className="bg-gray-50 p-4 rounded-xl border">
-              <p className="font-semibold">{selectedPackage} Includes:</p>
-              <ul className="text-sm text-gray-600 mt-2 space-y-1">
+            <div className="mt-4 p-4 bg-white/5 rounded-lg border border-white/10">
+              <h4 className="font-medium mb-2 text-[#d4af37]">
+                {selectedPackage} Includes:
+              </h4>
+              <ul className="text-sm text-white/60 space-y-1">
                 {packages[selectedPackage].map((item, i) => (
                   <li key={i}>• {item}</li>
                 ))}
               </ul>
             </div>
 
-          </div>
-
-          {/* BUTTONS */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-8">
-
+            {/* CTA */}
             <a
               href={whatsappLink}
               target="_blank"
-              className="flex-1 bg-green-500 text-white text-center py-4 rounded-xl font-semibold"
+              className="block text-center mt-4 py-3 rounded-xl bg-gradient-to-r from-[#d4af37] to-[#c9a227] text-black font-semibold hover:scale-105 transition"
             >
-              Book via WhatsApp
-            </a>
-
-            <a
-              href={`tel:${COMPANY_PHONE_VALUE}`}
-              className="flex items-center justify-center gap-2 px-6 py-4 border rounded-xl"
-            >
-              <Phone size={18} />
-              {COMPANY_PHONE_DISPLAY}
+              Start Booking
             </a>
 
           </div>
         </motion.div>
-
-        {/* RIGHT VIDEO */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="relative aspect-video rounded-2xl overflow-hidden shadow-2xl"
-        >
-          <iframe
-            className="absolute w-full h-full"
-            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0`}
-            title="Hero Video"
-            allow="autoplay; encrypted-media"
-          />
-        </motion.div>
-
       </div>
-
-      {/* INPUT STYLE */}
-      <style jsx>{`
-        .input {
-          width: 100%;
-          padding: 14px;
-          border: 1px solid #ddd;
-          border-radius: 12px;
-          outline: none;
-        }
-        .input:focus {
-          border-color: #facc15;
-          box-shadow: 0 0 0 2px rgba(250, 204, 21, 0.3);
-        }
-      `}</style>
-
     </section>
   );
 }
