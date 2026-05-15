@@ -116,7 +116,7 @@ export default function Hero() {
               transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-white/65 leading-relaxed"
             >
-              We turn weddings, dowry ceremonies, brand stories, project documentation, and once-in-a-lifetime events into timeless cinematic films ,captured and delivered in stunning 4K & 6K Visuals
+              We turn weddings, cultural ceremonies, brand stories, project documentaries, and unforgettable events into timeless cinematic films ,captured with emotion and delivered in stunning 4K & 6K visuals.
             </motion.p>
 
             {/* CTAs */}

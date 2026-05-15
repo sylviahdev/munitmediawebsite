@@ -79,9 +79,9 @@ export default function About() {
           {/* VERIFIED STATS */}
           <div className="grid grid-cols-2 gap-12 border-t border-white/10 pt-10">
             <div>
-              <p className="text-5xl font-black text-[#d4a847]">500+</p>
+              <p className="text-5xl font-black text-[#d4a847]">100+</p>
               <p className="text-xs text-white/40 uppercase tracking-widest mt-2">
-                Projects Completed
+                Events Covered
               </p>
             </div>
             <div>
