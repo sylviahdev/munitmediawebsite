@@ -117,8 +117,12 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a href="#home" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f5e6c8] via-[#d4af37] to-[#c9a227] flex items-center justify-center text-black font-extrabold shadow-[0_4px_20px_rgba(212,175,55,0.4)]">
-            M
+          <div className="w-12 h-12 rounded-xl overflow-hidden bg-[#f5e6c8] p-1 shadow-[0_6px_24px_-6px_rgba(212,175,55,0.5)] ring-1 ring-[#d4af37]/40">
+            <img
+              src="/logo.png"
+              alt="M-Unit Media logo"
+              className="w-full h-full object-contain"
+            />
           </div>
           <div className="leading-tight">
             <div className="text-white font-bold tracking-tight text-base md:text-lg">
