@@ -148,9 +148,7 @@ export default function Navbar() {
         {/* CTA */}
         <div className="hidden md:block">
           <a
-            href={whatsappLink}
-            target="_blank"
-            rel="noreferrer"
+            href="#booking"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-black bg-gradient-to-r from-[#f5e6c8] via-[#d4af37] to-[#c9a227] shadow-[0_6px_24px_-6px_rgba(212,175,55,0.6)] hover:scale-105 transition"
           >
             <MessageCircle size={16} />

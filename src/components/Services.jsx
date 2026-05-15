@@ -1,37 +1,35 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Video, Camera, Film, Radio, MessageCircle, ArrowRight } from "lucide-react";
-import { getWhatsAppLink } from "../constants/contact";
+import { Video, Camera, Film, Radio, ArrowRight } from "lucide-react";
 
 const services = [
   {
     icon: Video,
     title: "Videography",
-    tagline: "Ads · Promos · Event Coverage",
+    tagline: "Event Coverage · Cinematic Films",
     benefit:
       "Cinematic films that make your brand unforgettable and your events feel like a movie — built to convert, share, and stand the test of time.",
     points: [
-      "Brand ads & promo videos that drive sales",
       "Wedding & event films that move people",
-      "4K quality with pro audio & color grading",
-      "Fast turnaround — ready to post in days",
+      "4K / 6K quality with pro audio & color grading",
+      "Fast turnaround , ready to post in days",
     ],
     accent: "from-[#d4af37] via-amber-400 to-[#c9a227]",
     glow: "bg-amber-500/20",
     whatsappMsg:
-      "Hi! I'd like to book a videography session (ads / promos / event coverage). What's your availability?",
+      "Hi! I'd like to book a videography session (event coverage). What's your availability?",
   },
   {
     icon: Camera,
     title: "Photography",
     tagline: "Events · Portraits · Branding",
     benefit:
-      "Stunning, scroll-stopping photos that elevate your personal brand, capture every emotion at your event, and look incredible everywhere — from billboards to Instagram.",
+      "Scroll-stopping photography that elevates your brand, captures real emotion, and looks incredible everywhere.",
     points: [
-      "Branding shoots that grow your business",
-      "Wedding & event photography that lasts a lifetime",
       "Editorial portraits with magazine-grade retouching",
-      "High-resolution gallery delivered in 72 hours",
+      "Branding shoots with full creative direction, styling, and lighting for a polished editorial look",
+      "High-resolution images ready for print and digital use",
+      "Fast delivery full gallery delivered in 72 hours",
     ],
     accent: "from-white via-[#f5e6c8] to-[#d4af37]",
     glow: "bg-[#d4af37]/20",
@@ -43,7 +41,7 @@ const services = [
     title: "Post Production",
     tagline: "Editing · Color · Sound · Motion Graphics",
     benefit:
-      "We transform raw footage into high-end cinematic content built for every platform — polished, paced, and ready to post.",
+      "We transform raw footage into high-end cinematic content built for every platform polished, paced, and ready to post.",
     points: [
       "YouTube video editing & optimization",
       "Social media edits (Instagram, TikTok, Facebook)",
@@ -60,7 +58,7 @@ const services = [
     title: "Live Streaming",
     tagline: "Events · Broadcasts · Multi-Cam",
     benefit:
-      "Reliable, broadcast-quality live streaming for events anywhere in Kenya — multi-camera, real-time, and audience-ready.",
+      "Reliable, broadcast quality live streaming for events anywhere in Kenya ,multi-camera, real-time, and audience-ready.",
     points: [
       "Full HD multi-camera streaming",
       "Real-time switching & monitoring",
@@ -99,13 +97,13 @@ export default function Services() {
             What We Do
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
-            Services Built To{" "}
+            Visuals Built To{" "}
             <span className="bg-gradient-to-r from-[#f5e6c8] to-[#d4af37] bg-clip-text text-transparent">
-              Convert & Captivate
+              Captivate & Convert 
             </span>
           </h2>
           <p className="mt-5 max-w-2xl mx-auto text-white/60 text-lg">
-            Two crafts. One obsession — making you look extraordinary.
+            Capturing & Preserving your most extraordinary moments..
           </p>
         </motion.div>
 
@@ -163,12 +161,16 @@ export default function Services() {
 
                 {/* CTA */}
                 <a
-                  href={getWhatsAppLink(service.whatsappMsg)}
-                  target="_blank"
-                  rel="noreferrer"
+                  href="#booking"
+                  onClick={() => {
+                    window.dispatchEvent(
+                      new CustomEvent("mm:set-interested-service", {
+                        detail: service.title,
+                      })
+                    );
+                  }}
                   className="mt-8 inline-flex items-center gap-2 text-[#d4af37] font-semibold tracking-wide hover:gap-3 transition-all"
                 >
-                  <MessageCircle size={18} />
                   Book {service.title}
                   <ArrowRight size={18} />
                 </a>

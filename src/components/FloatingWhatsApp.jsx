@@ -55,7 +55,7 @@ export default function FloatingWhatsApp() {
             </div>
             <div className="p-4">
               <p className="text-white/80 text-sm leading-relaxed">
-                Hi 👋 Tell us about your event, brand, or shoot — we'll send
+                Hi 👋 Tell us about your event, brand, or shoot , we'll send
                 pricing & availability right away.
               </p>
               <a

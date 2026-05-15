@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { MessageCircle, Phone, Check } from "lucide-react";
 import {
@@ -77,6 +77,30 @@ export default function QuickBooking() {
   const [location, setLocation] = useState("");
   const [phone, setPhone] = useState("");
   const [packageKey, setPackageKey] = useState("silver");
+  const [interestedService, setInterestedService] = useState("");
+  const formCardRef = useRef(null);
+
+  useEffect(() => {
+    const onPick = (e) => {
+      const service = e.detail;
+      if (typeof service === "string") {
+        setInterestedService(service);
+        // Pulse the form card so the user notices the prefill
+        if (formCardRef.current) {
+          formCardRef.current.animate(
+            [
+              { boxShadow: "0 0 0 0 rgba(212,175,55,0)" },
+              { boxShadow: "0 0 0 6px rgba(212,175,55,0.35)" },
+              { boxShadow: "0 0 0 0 rgba(212,175,55,0)" },
+            ],
+            { duration: 1200, easing: "ease-out" }
+          );
+        }
+      }
+    };
+    window.addEventListener("mm:set-interested-service", onPick);
+    return () => window.removeEventListener("mm:set-interested-service", onPick);
+  }, []);
 
   const selectedPackage = useMemo(
     () => PACKAGES.find((p) => p.key === packageKey) || PACKAGES[1],
@@ -88,6 +112,7 @@ export default function QuickBooking() {
       "Hi M-Unit Media! I'd like to book a shoot.",
       "",
       `*Package:* ${selectedPackage.name}`,
+      interestedService ? `*Service Interest:* ${interestedService}` : null,
       eventType ? `*Event Type:* ${eventType}` : null,
       date ? `*Date:* ${date}` : null,
       location ? `*Location:* ${location}` : null,
@@ -98,7 +123,7 @@ export default function QuickBooking() {
       .filter(Boolean)
       .join("\n");
     return getWhatsAppLink(lines);
-  }, [selectedPackage, eventType, date, location, phone]);
+  }, [selectedPackage, interestedService, eventType, date, location, phone]);
 
   const inputBase =
     "w-full rounded-xl bg-white/[0.04] border border-white/10 px-4 py-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:border-[#d4af37]/60 focus:bg-white/[0.06] transition";
@@ -194,6 +219,7 @@ export default function QuickBooking() {
 
           {/* RIGHT — form card */}
           <motion.div
+            ref={formCardRef}
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
@@ -208,6 +234,25 @@ export default function QuickBooking() {
                 {selectedPackage.tagline}
               </span>
             </div>
+
+            {interestedService && (
+              <div className="mb-5 flex items-center justify-between gap-3 rounded-xl border border-[#d4af37]/30 bg-[#d4af37]/10 px-4 py-3 text-sm">
+                <span className="text-white/80">
+                  Interested in{" "}
+                  <span className="font-semibold text-[#d4af37]">
+                    {interestedService}
+                  </span>
+                </span>
+                <button
+                  type="button"
+                  onClick={() => setInterestedService("")}
+                  className="text-xs text-white/50 hover:text-white transition"
+                  aria-label="Clear service interest"
+                >
+                  Clear
+                </button>
+              </div>
+            )}
 
             <form
               onSubmit={(e) => {

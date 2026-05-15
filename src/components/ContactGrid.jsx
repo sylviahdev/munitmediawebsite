@@ -111,7 +111,7 @@ Message: ${formData.message}
           <ul className="space-y-4">
             {[
               "15+ Years Industry Experience",
-              "Cinematic 4K/6K Video Quality",
+              "Cinematic 4K / 6K Video Quality",
               "Advanced Lighting & Audio Equipment",
               "Fast delivery & professional editing",
               "Experienced event coverage team" ,

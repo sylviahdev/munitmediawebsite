@@ -9,11 +9,7 @@ import {
   ChevronRight,
   X,
 } from "lucide-react";
-import {
-  CONTACT,
-  getWhatsAppLink,
-  getEmailLink,
-} from "../constants/contact";
+import { getWhatsAppLink } from "../constants/contact";
 
 const HERO_REEL = [
   {
@@ -40,7 +36,6 @@ export default function Hero() {
   const whatsappLink = getWhatsAppLink(
     "Hi! I'd like to book a shoot. Please share your availability and pricing."
   );
-  const bookShootLink = getEmailLink(CONTACT.email);
 
   const next = () => setIndex((i) => (i + 1) % HERO_REEL.length);
   const prev = () => setIndex((i) => (i - 1 + HERO_REEL.length) % HERO_REEL.length);
@@ -113,7 +108,7 @@ export default function Hero() {
               transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
               className="mt-6 max-w-xl mx-auto lg:mx-0 text-base sm:text-lg text-white/65 leading-relaxed"
             >
-              We turn weddings, dowry ceremonies, brand stories, project documentation, and once-in-a-lifetime events into timeless cinematic films, captured and delivered in stunning 4K.
+              We turn weddings, dowry ceremonies, brand stories, project documentation, and once-in-a-lifetime events into timeless cinematic films ,captured and delivered in stunning 4K & 6K Visuals
             </motion.p>
 
             {/* CTAs */}
@@ -134,7 +129,7 @@ export default function Hero() {
               </a>
 
               <a
-                href={bookShootLink}
+                href="#booking"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-semibold text-white border border-white/20 bg-white/5 backdrop-blur-md hover:bg-white/10 hover:border-white/30 transition"
               >
                 <Calendar size={20} className="text-[#d4af37]" />

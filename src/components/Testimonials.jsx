@@ -7,18 +7,18 @@ const testimonials = [
     name: "Mwende Kyalo",
     role: "Bride · Nairobi",
     quote:
-      "They didn't just film our wedding ,they bottled the emotion. Watching the highlight reel still gives us chills a year later.",
+      "They didn't just film our wedding —,they bottled the emotion. Watching the highlight reel still gives us chills a year later.",
     rating: 5,
   },
   {
     name: "Brian Kisilu",
     role: "Owner · Ekafarm Ltd",
     quote:
-      "Munit Media professionally documented our land project from site clearing and ground preparation to the final planting stages. Every milestone was captured with cinematic quality and attention to detail, giving us a powerful visual story of the project’s progress. The final 4K production was clean, engaging, and exceeded our expectations.”. Cinematic quality, sharp delivery, zero stress.",
+      "M-Unit Media professionally documented our land project from site clearing and ground preparation to the final planting stages. Every milestone was captured with cinematic quality and attention to detail, giving us a powerful visual story of the project's progress. The final 4K production was clean, engaging, and exceeded our expectations.",
     rating: 5,
   },
   {
-    name: "Sylviah ",
+    name: "Sylviah",
     role: "Founder · SM Solutions",
     quote:
       "From concept to final cut, the team was professional, creative, and on time. Our launch event coverage looked world-class.",
@@ -28,14 +28,14 @@ const testimonials = [
     name: "Rachael and Mutisya",
     role: "Client · Kangundo",
     quote:
-      "Best decision we made for our wedding anniversary. Crisp 4K video, gorgeous photos, and beautifully captured memories we’ll cherish forever.",
+      "Best decision we made for our wedding anniversary. Crisp 4K video, gorgeous photos, and beautifully captured memories we'll cherish forever.",
     rating: 5,
   },
   {
     name: "Linet Kiilu",
     role: "Client · Makueni",
     quote:
-      "They captured the farewell service with such dignity and care. Every moment was preserved beautifully, helping our family hold on to precious memories",
+      "They captured the farewell service with such dignity and care. Every moment was preserved beautifully, helping our family hold on to precious memories.",
     rating: 5,
   },
   {
@@ -85,7 +85,7 @@ export default function Testimonials() {
             </span>
           </h2>
           <p className="mt-5 max-w-2xl mx-auto text-white/60 text-lg">
-            Don't take our word for it ,hear from people we've worked with.
+            Don't take our word for it — hear from people we've worked with.
           </p>
         </motion.div>
 

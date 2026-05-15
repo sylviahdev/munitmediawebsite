@@ -138,7 +138,7 @@ export default function Footer() {
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
           <p>© {year} M-Unit Media. All rights reserved.</p>
           <p className="tracking-[0.3em] uppercase">
-            Crafted with care · Nairobi, Kenya
+            SM Solutions Tech · Software & AI Systems
           </p>
         </div>
       </div>
