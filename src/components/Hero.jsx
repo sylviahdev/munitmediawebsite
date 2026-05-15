@@ -62,16 +62,24 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* LEFT — content */}
           <div className="text-center lg:text-left">
-            {/* Eyebrow badge */}
+            {/* Eyebrow badges */}
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8"
+              className="flex flex-wrap items-center justify-center lg:justify-start gap-2 mb-8"
             >
-              <Sparkles size={14} className="text-[#d4af37]" />
-              <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-white/70">
-                Cinematic Videography & Photography · 4K / 6K Films
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md">
+                <Sparkles size={14} className="text-[#d4af37]" />
+                <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-white/70 whitespace-nowrap">
+                  Cinematic Videography & Photography
+                </span>
+              </span>
+              <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#d4af37]/30 bg-[#d4af37]/10 backdrop-blur-md">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#d4af37]" />
+                <span className="text-[11px] sm:text-xs tracking-[0.3em] uppercase text-[#d4af37] whitespace-nowrap">
+                  4K / 6K Films
+                </span>
               </span>
             </motion.div>
 
