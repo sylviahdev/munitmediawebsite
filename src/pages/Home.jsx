@@ -1,74 +1,28 @@
 import React from "react";
 import Hero from "../components/Hero";
-import CompanyOverview from "../components/CompanyOverview";
 import Services from "../components/Services";
-import Videos from "../components/Videos";
+import QuickBooking from "../components/QuickBooking";
+import Portfolio from "../components/Portfolio";
+import LatestVideos from "../components/LatestVideos";
 import Testimonials from "../components/Testimonials";
-import ContactGrid from "../components/ContactGrid";
+import FinalCTA from "../components/FinalCTA";
+import LocationMap from "../components/LocationMap";
 import Footer from "../components/Footer";
-import SectionWrapper from "../components/ui/SectionWrapper";
-import CTASection from "../components/ui/CTASection";
-import StickyContactBar from "../components/StickyContactBar";
-import { SPACING } from "../constants/spacing";
+import FloatingWhatsApp from "../components/FloatingWhatsApp";
 
-/**
- * Home Page - Complete landing page with strategic user journey
- *
- * Page Structure:
- * 1. Hero - Impact & first impression
- * 2. CompanyOverview - Credibility & validation
- * 3. Services - Offering details
- * 4. Videos - Social proof & portfolio
- * 5. Testimonials - Client testimonials for trust building
- * 6. CTA Section - Final conversion push
- * 7. Footer - Contact info & navigation
- * 8. StickyContactBar - Mobile-only floating contact (mobile only)
- */
-function Home() {
+export default function Home() {
   return (
-    <main className="w-full bg-white overflow-x-hidden">
-      <div className={`${SPACING.sectionSpacing} pb-24`}>
-        {/* ================= HERO ================= */}
-        <SectionWrapper id="home" showTopPadding={true}>
-          <Hero />
-        </SectionWrapper>
-
-        {/* ================= ABOUT ================= */}
-        <SectionWrapper id="about">
-          <CompanyOverview />
-        </SectionWrapper>
-
-        {/* ================= SERVICES ================= */}
-        <SectionWrapper id="services">
-          <Services />
-        </SectionWrapper>
-
-        {/* ================= PORTFOLIO ================= */}
-        <SectionWrapper id="portfolio">
-          <Videos />
-        </SectionWrapper>
-
-        {/* ================= TESTIMONIALS ================= */}
-        <SectionWrapper id="testimonials" animateOnScroll={false}>
-          <Testimonials />
-        </SectionWrapper>
-
-        {/* ================= CTA SECTION ================= */}
-        <CTASection />
-
-        {/* ================= CONTACT FORM ================= */}
-        <SectionWrapper id="contact">
-          <ContactGrid />
-        </SectionWrapper>
-      </div>
-
-      {/* ================= FOOTER ================= */}
+    <main className="bg-black text-white overflow-x-hidden">
+      <Hero />
+      <Services />
+      <QuickBooking />
+      <Portfolio />
+      <LatestVideos />
+      <Testimonials />
+      <FinalCTA />
+      <LocationMap />
       <Footer />
-
-      {/* ================= STICKY CONTACT BAR (Mobile Only) ================= */}
-      <StickyContactBar />
+      <FloatingWhatsApp />
     </main>
   );
 }
-
-export default Home;

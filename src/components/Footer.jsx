@@ -1,81 +1,147 @@
 import React from "react";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { Mail, Phone, MapPin, MessageCircle } from "lucide-react";
+import {
+  CONTACT,
+  SOCIAL_LINKS,
+  getWhatsAppLink,
+  getEmailLink,
+  getPhoneLink,
+} from "../constants/contact";
 
-function Footer() {
-  const currentYear = new Date().getFullYear();
+export default function Footer() {
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-white pt-20 pb-10">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 pb-16 border-b border-gray-800">
-          
-          {/* LEFT: Contact & Branding */}
-          <div>
-            <h3 className="text-2xl font-black tracking-tighter mb-6 text-[#0066FF]">
-              M-UNIT MEDIA
-            </h3>
-            <p className="text-gray-400 text-lg mb-8 max-w-sm">
-              Capturing Kenya’s most iconic moments with unmatched expertise and professional quality videos and photos 
-              
-            </p>
-            
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 text-gray-300">
-                <MapPin className="text-[#0066FF]" size={20} />
-                <span>Ekalakala, Machakos</span>
-              </div>
-              <div className="flex items-center gap-4 text-gray-300">
-                <Phone className="text-[#0066FF]" size={20} />
-                <span>+254 713 919 051</span>
-              </div>
-              <div className="flex items-center gap-4 text-gray-300">
-                <Mail className="text-[#0066FF]" size={20} />
-                <span>munitmedia.ke@gmail.com</span>
-              </div>
-            </div>
+    <footer
+      id="contact"
+      className="relative bg-black text-white border-t border-white/10 overflow-hidden"
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-40 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#d4af37]/5 blur-[160px]" />
+      </div>
 
-            {/* Social Links */}
-            <div className="flex gap-4 mt-8">
-              <a href="https://instagram.com/m-unitmedia7055" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0066FF] transition-colors font-semibold">
-                Instagram
-              </a>
-              <a href="https://youtube.com/@m-unitmedia7055" target="_blank" rel="noreferrer" className="text-gray-400 hover:text-[#0066FF] transition-colors font-semibold">
-                YouTube
-              </a>
+      <div className="relative max-w-7xl mx-auto px-6 pt-20 pb-10">
+        <div className="grid md:grid-cols-3 gap-12 pb-12 border-b border-white/10">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f5e6c8] via-[#d4af37] to-[#c9a227] flex items-center justify-center text-black font-extrabold shadow-[0_4px_20px_rgba(212,175,55,0.4)]">
+                M
+              </div>
+              <div className="text-lg font-bold tracking-tight">
+                M-UNIT{" "}
+                <span className="bg-gradient-to-r from-[#f5e6c8] to-[#d4af37] bg-clip-text text-transparent">
+                  MEDIA
+                </span>
+              </div>
             </div>
+            <p className="text-white/60 leading-relaxed max-w-sm">
+              Cinematic videography & professional photography for businesses,
+              brands, and individuals across Kenya.
+            </p>
+
+            <a
+              href={getWhatsAppLink()}
+              target="_blank"
+              rel="noreferrer"
+              className="mt-6 inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-black bg-gradient-to-r from-[#f5e6c8] via-[#d4af37] to-[#c9a227] hover:scale-105 transition"
+            >
+              <MessageCircle size={16} />
+              Chat on WhatsApp
+            </a>
           </div>
 
-          {/* RIGHT: The Map Container */}
-          <div className="relative group min-w-0">
-            <div className="w-full aspect-[16/9] sm:aspect-[4/3] md:aspect-[5/3] rounded-[2rem] overflow-hidden border-4 border-gray-800 shadow-2xl grayscale-[0.2] group-hover:grayscale-0 transition-all duration-500">
-              {/* UX Tip: Using an iframe for a live Google Map */}
-              <iframe
-                title="M-Unit Media Location"
-                src="https://www.google.com/maps?q=Munit+Media+Ekalakala+Machakos,+Kenya&output=embed"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+          {/* Quick Links */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.3em] text-[#d4af37] mb-5">
+              Explore
+            </h4>
+            <ul className="space-y-3 text-white/70">
+              {[
+                { id: "home", label: "Home" },
+                { id: "services", label: "Services" },
+                { id: "portfolio", label: "Portfolio" },
+                { id: "testimonials", label: "Testimonials" },
+                { id: "contact", label: "Contact" },
+              ].map((l) => (
+                <li key={l.id}>
+                  <a
+                    href={`#${l.id}`}
+                    className="hover:text-[#d4af37] transition"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-xs uppercase tracking-[0.3em] text-[#d4af37] mb-5">
+              Get in Touch
+            </h4>
+            <ul className="space-y-4 text-white/70">
+              <li>
+                <a
+                  href={getPhoneLink()}
+                  className="flex items-center gap-3 hover:text-[#d4af37] transition"
+                >
+                  <Phone size={16} className="text-[#d4af37]" />
+                  {CONTACT.phoneDisplay}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={getEmailLink()}
+                  className="flex items-center gap-3 hover:text-[#d4af37] transition break-all"
+                >
+                  <Mail size={16} className="text-[#d4af37] shrink-0" />
+                  {CONTACT.email}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={getEmailLink(CONTACT.emailAlt)}
+                  className="flex items-center gap-3 hover:text-[#d4af37] transition break-all"
+                >
+                  <Mail size={16} className="text-[#d4af37] shrink-0" />
+                  {CONTACT.emailAlt}
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin size={16} className="text-[#d4af37]" />
+                {CONTACT.location}
+              </li>
+            </ul>
+
+            <div className="flex gap-3 mt-6">
+              {[
+                { href: SOCIAL_LINKS.instagram, label: "Instagram" },
+                { href: SOCIAL_LINKS.youtube, label: "YouTube" },
+                { href: SOCIAL_LINKS.facebook, label: "Facebook" },
+              ].map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 text-white/70 hover:text-[#d4af37] hover:border-[#d4af37]/40 transition"
+                >
+                  {s.label}
+                </a>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
-        <div className="pt-10 flex flex-col md:flex-row justify-center md:justify-between items-center gap-4 text-center md:text-left">
-          <p className="text-gray-500 text-sm font-medium min-w-0">
-            © {currentYear} M-Unit Media. All rights reserved.
+        <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/40">
+          <p>© {year} M-Unit Media. All rights reserved.</p>
+          <p className="tracking-[0.3em] uppercase">
+            Crafted with care · Nairobi, Kenya
           </p>
-          <div className="flex flex-wrap justify-center md:justify-end gap-4 md:gap-8 text-gray-500 text-xs font-bold uppercase tracking-widest min-w-0">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
-          </div>
         </div>
       </div>
     </footer>
   );
 }
-
-export default Footer;

@@ -1,174 +1,205 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X, Mail, Phone } from "lucide-react";
+import { Menu, X, MessageCircle, Mail, Phone, ArrowUpRight } from "lucide-react";
+import {
+  CONTACT,
+  SOCIAL_LINKS,
+  getWhatsAppLink,
+  getEmailLink,
+  getPhoneLink,
+} from "../constants/contact";
 
-function Navbar() {
+const NAV_LINKS = [
+  { id: "home", label: "Home" },
+  { id: "services", label: "Services" },
+  { id: "portfolio", label: "Portfolio" },
+  { id: "testimonials", label: "Testimonials" },
+  { id: "contact", label: "Contact" },
+];
+
+export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("home");
 
-  // ✅ CLEAN LINKS
-  const whatsappQuoteLink =
-    "https://wa.me/254713919051?text=Hi%20M-Unit%20Media,%20I'd%20like%20to%20get%20a%20quote%20for%20video%20coverage.";
+  const whatsappLink = getWhatsAppLink();
 
-  const youtubeLink = "https://www.youtube.com/@m-unitmedia7055";
-  const facebookLink = "https://www.facebook.com/munitmedia";
-
-  // ================= SCROLL SPY =================
   useEffect(() => {
-    const sections = ["home", "services", "videos", "contact"];
-
     const handleScroll = () => {
-      const scrollY = window.scrollY;
+      setScrolled(window.scrollY > 40);
 
-      sections.forEach((section) => {
-        const el = document.getElementById(section);
-        if (!el) return;
-
-        const top = el.offsetTop - 120;
-        const height = el.offsetHeight;
-
-        if (scrollY >= top && scrollY < top + height) {
-          setActive(section);
-        }
+      const offsets = NAV_LINKS.map(({ id }) => {
+        const el = document.getElementById(id);
+        return el
+          ? { id, top: el.getBoundingClientRect().top }
+          : { id, top: Number.POSITIVE_INFINITY };
       });
+
+      const current = offsets
+        .filter((o) => o.top <= 140)
+        .sort((a, b) => b.top - a.top)[0];
+
+      if (current) setActive(current.id);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const linkClass = (section) =>
-    `relative text-sm font-semibold transition ${
-      active === section
-        ? "text-blue-600"
-        : "text-gray-700 hover:text-blue-500"
+  const linkClass = (id) =>
+    `relative text-sm font-medium tracking-wide transition ${
+      active === id
+        ? "text-[#d4af37]"
+        : "text-white/70 hover:text-white"
     }`;
 
   return (
-    <>
-      {/* ================= TOP BAR (DESKTOP ONLY) ================= */}
-      <div className="bg-slate-900 text-white text-xs py-2 px-6 hidden md:block">
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-
-          {/* LEFT */}
+    <header
+      className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-black/80 backdrop-blur-xl border-b border-white/10"
+          : "bg-transparent"
+      }`}
+    >
+      {/* Top utility bar */}
+      <div
+        className={`hidden md:block border-b border-white/5 transition-all duration-500 ${
+          scrolled ? "h-0 opacity-0 overflow-hidden" : "h-10 opacity-100"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 h-10 flex items-center justify-between text-xs text-white/60">
           <div className="flex items-center gap-6">
-
-            <span className="flex items-center gap-2">
-              <Mail size={14} />
-              munitmedia.ke@gmail.com
-            </span>
-
-            <span className="flex items-center gap-2">
-              <Phone size={14} />
-              0713919051
-            </span>
-
-            {/* YOUTUBE */}
-            <a href={youtubeLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-red-400">
-              <svg width="14" height="14" fill="currentColor" className="text-red-500">
-                <path d="M23.498 6.186a2.95 2.95 0 0 0-2.08-2.09C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.418.596A2.95 2.95 0 0 0 .502 6.186A30.6 30.6 0 0 0 0 12a30.6 30.6 0 0 0 .502 5.814 2.95 2.95 0 0 0 2.08 2.09C4.5 20.5 12 20.5 12 20.5s7.5 0 9.418-.596a2.95 2.95 0 0 0 2.08-2.09A30.6 30.6 0 0 0 24 12a30.6 30.6 0 0 0-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/>
-              </svg>
-              YouTube
+            <a
+              href={getEmailLink()}
+              className="flex items-center gap-2 hover:text-[#d4af37] transition"
+            >
+              <Mail size={13} className="text-[#d4af37]" />
+              <span>{CONTACT.email}</span>
             </a>
-
-            {/* FACEBOOK */}
-            <a href={facebookLink} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-blue-400">
-              <svg width="14" height="14" fill="currentColor" className="text-blue-500">
-                <path d="M22 12a10 10 0 1 0-11.56 9.87v-6.99h-2.3V12h2.3V9.8c0-2.28 1.35-3.54 3.42-3.54.99 0 2.02.18 2.02.18v2.22h-1.14c-1.12 0-1.47.69-1.47 1.4V12h2.5l-.4 2.88h-2.1v6.99A10 10 0 0 0 22 12z"/>
-              </svg>
-              Facebook
+            <a
+              href={getPhoneLink()}
+              className="flex items-center gap-2 hover:text-[#d4af37] transition"
+            >
+              <Phone size={13} className="text-[#d4af37]" />
+              <span>{CONTACT.phoneDisplay}</span>
             </a>
-
           </div>
-
-          {/* RIGHT */}
-          <div className="text-slate-300 text-right">
-            Premium Videography & Photography Services
+          <div className="flex items-center gap-5">
+            <span className="tracking-[0.2em] uppercase text-white/40">
+              Cinematic Visuals · Machakos, Kenya
+            </span>
+            <span className="h-3 w-px bg-white/15" />
+            <a
+              href={SOCIAL_LINKS.youtube}
+              target="_blank"
+              rel="noreferrer"
+              className="group flex items-center gap-1.5 text-white/60 hover:text-[#d4af37] transition"
+            >
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.016 3.016 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.121 2.136c1.872.505 9.377.505 9.377.505s7.505 0 9.376-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.546 15.568V8.432L15.818 12l-6.272 3.568z" />
+              </svg>
+              <span className="tracking-wide">YouTube</span>
+              <ArrowUpRight
+                size={12}
+                className="opacity-60 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+              />
+            </a>
           </div>
         </div>
       </div>
 
-      {/* ================= MAIN NAV ================= */}
-      <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-
-          {/* LOGO */}
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" className="h-10" alt="logo" />
-            <div className="hidden sm:block">
-              <div className="font-black text-lg">
-                M-UNIT <span className="text-blue-600">MEDIA</span>
-              </div>
-              <div className="text-[10px] tracking-widest text-gray-500">
-                Weddings • Events • Funerals
-              </div>
+      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between h-16 md:h-20">
+        {/* Logo */}
+        <a href="#home" className="flex items-center gap-3 group">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#f5e6c8] via-[#d4af37] to-[#c9a227] flex items-center justify-center text-black font-extrabold shadow-[0_4px_20px_rgba(212,175,55,0.4)]">
+            M
+          </div>
+          <div className="leading-tight">
+            <div className="text-white font-bold tracking-tight text-base md:text-lg">
+              M-UNIT{" "}
+              <span className="bg-gradient-to-r from-[#f5e6c8] to-[#d4af37] bg-clip-text text-transparent">
+                MEDIA
+              </span>
+            </div>
+            <div className="hidden sm:block text-[10px] tracking-[0.3em] text-white/40 uppercase">
+              Videography · Photography
             </div>
           </div>
+        </a>
 
-          {/* DESKTOP MENU */}
-          <div className="hidden md:flex items-center gap-8">
-            {["home", "services", "videos", "contact"].map((item) => (
-              <a key={item} href={`#${item}`} className={linkClass(item)}>
-                {item}
-              </a>
-            ))}
-
-            <a
-              href={whatsappQuoteLink}
-              target="_blank"
-              rel="noreferrer"
-              className="bg-yellow-400 px-4 py-2 rounded-full font-semibold hover:scale-105 transition"
-            >
-              Book Now
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-9">
+          {NAV_LINKS.map((link) => (
+            <a key={link.id} href={`#${link.id}`} className={linkClass(link.id)}>
+              {link.label}
+              {active === link.id && (
+                <span className="absolute -bottom-1.5 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#d4af37] to-transparent" />
+              )}
             </a>
-          </div>
+          ))}
+        </nav>
 
-          {/* MOBILE BUTTON */}
-          <button onClick={() => setOpen(!open)} className="md:hidden">
-            {open ? <X size={28} /> : <Menu size={28} />}
-          </button>
+        {/* CTA */}
+        <div className="hidden md:block">
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold text-black bg-gradient-to-r from-[#f5e6c8] via-[#d4af37] to-[#c9a227] shadow-[0_6px_24px_-6px_rgba(212,175,55,0.6)] hover:scale-105 transition"
+          >
+            <MessageCircle size={16} />
+            Book Now
+          </a>
         </div>
 
-        {/* ================= MOBILE MENU ================= */}
-        {open && (
-          <div className="md:hidden px-6 py-6 flex flex-col gap-5 bg-white shadow-lg">
+        {/* Mobile toggle */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
 
-            {["home", "services", "videos", "contact"].map((item) => (
-              <a key={item} href={`#${item}`} onClick={() => setOpen(false)}>
-                {item}
+      {/* Mobile menu */}
+      {open && (
+        <div className="md:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
+          <div className="px-6 py-6 flex flex-col gap-1">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.id}
+                href={`#${link.id}`}
+                onClick={() => setOpen(false)}
+                className={`px-4 py-3 rounded-lg text-base font-medium transition ${
+                  active === link.id
+                    ? "text-[#d4af37] bg-white/5"
+                    : "text-white/80 hover:bg-white/5"
+                }`}
+              >
+                {link.label}
               </a>
             ))}
-
             <a
-              href={whatsappQuoteLink}
+              href={whatsappLink}
               target="_blank"
               rel="noreferrer"
-              className="bg-green-500 text-white py-3 rounded-lg text-center"
+              onClick={() => setOpen(false)}
+              className="mt-4 inline-flex items-center justify-center gap-2 py-3.5 rounded-full font-semibold text-black bg-gradient-to-r from-[#f5e6c8] via-[#d4af37] to-[#c9a227]"
             >
-              Book Now
+              <MessageCircle size={18} />
+              Chat on WhatsApp
             </a>
-
-            {/* SOCIAL ICONS (VISIBLE ON PHONE) */}
-            <div className="flex justify-center gap-6 pt-4">
-
-              <a href={youtubeLink} target="_blank" rel="noreferrer">
-                <svg width="26" height="26" fill="currentColor" className="text-red-500">
-                  <path d="M23.498 6.186a2.95 2.95 0 0 0-2.08-2.09C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.418.596A2.95 2.95 0 0 0 .502 6.186A30.6 30.6 0 0 0 0 12a30.6 30.6 0 0 0 .502 5.814 2.95 2.95 0 0 0 2.08 2.09C4.5 20.5 12 20.5 12 20.5s7.5 0 9.418-.596a2.95 2.95 0 0 0 2.08-2.09A30.6 30.6 0 0 0 24 12a30.6 30.6 0 0 0-.502-5.814zM9.75 15.5v-7l6 3.5-6 3.5z"/>
-                </svg>
-              </a>
-
-              <a href={facebookLink} target="_blank" rel="noreferrer">
-                <svg width="26" height="26" fill="currentColor" className="text-blue-500">
-                  <path d="M22 12a10 10 0 1 0-11.56 9.87v-6.99h-2.3V12h2.3V9.8c0-2.28 1.35-3.54 3.42-3.54.99 0 2.02.18 2.02.18v2.22h-1.14c-1.12 0-1.47.69-1.47 1.4V12h2.5l-.4 2.88h-2.1v6.99A10 10 0 0 0 22 12z"/>
-                </svg>
-              </a>
-
-            </div>
-
           </div>
-        )}
-      </nav>
-    </>
+        </div>
+      )}
+    </header>
   );
 }
-
-export default Navbar;

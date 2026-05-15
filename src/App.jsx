@@ -2,16 +2,11 @@ import React from "react";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 
-function App() {
+export default function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 selection:bg-cyan-600 selection:text-white">
-      {/* Sticky Navbar is global */}
+    <div className="min-h-screen bg-black text-white selection:bg-[#d4af37] selection:text-black antialiased">
       <Navbar />
-
-      {/* Home contains all the page sections */}
       <Home />
     </div>
   );
 }
-
-export default App;
